@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Express.js API İstek Örneği</title>
+</head>
+
+<body>
+    <h1>Express.js API İstek Örneği</h1>
+    <button onclick="sendRequest()">API'ya İstek Gönder</button>
+    <p id="response"></p>
+
+    <script>
+        function sendRequest() {
+            fetch('/api/users')
+                .then(response => response.json())
+                .then(data => {
+                    let responseElement = document.getElementById('response');
+                    responseElement.innerHTML = '';
+                    data.forEach(data => {
+                        responseElement.innerHTML += data.name + '<br>';
+                    })
+                })
+                .catch(error => {
+                    console.error('İstek hatası:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>
